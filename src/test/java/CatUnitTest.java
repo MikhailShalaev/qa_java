@@ -2,6 +2,7 @@ package com.example;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -12,12 +13,12 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatUnitTest {
-    @Spy
-    private Feline feline = new Feline();
-
     private Cat cat;
 
-    @Test
+    @Mock
+    private Feline feline;
+
+       @Test
     public void testGetSound(){
         cat = new Cat(feline);
         assertEquals("Not equal","Мяу", cat.getSound());

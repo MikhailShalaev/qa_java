@@ -1,6 +1,5 @@
-package сom.example;
+package com.example;
 
-import com.example.Lion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -9,7 +8,10 @@ import java.util.Collection;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
+
 public class LionParametrizedTest {
+
+    Feline feline;
 
     @Parameterized.Parameter(0)
     public String sex;
@@ -27,7 +29,7 @@ public class LionParametrizedTest {
 
     @Test
     public void testDoesHaveMane() throws Exception {
-        Lion lion = new Lion(sex);
+        Lion lion = new Lion(sex, feline);
         assertEquals(isCorrect, lion.doesHaveMane());
     }
 }

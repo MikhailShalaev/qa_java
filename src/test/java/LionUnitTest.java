@@ -1,21 +1,23 @@
 package com.example;
 
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Arrays;
-import java.util.List;
+import org.mockito.Mock;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class LionUnitTest {
+    @Mock
     private Feline feline;
     private Lion lion;
 
     @Before
     public void setUp() throws Exception {
-        feline = mock(Feline.class);
-        lion = new Lion("Самка");
+        initMocks(this);
+        lion = new Lion("Самка", feline);
     }
 
     @Test
@@ -26,10 +28,15 @@ public class LionUnitTest {
 
     @Test
     public void testGetFood() throws Exception {
-        List<String> expFood = Arrays.asList("Животные", "Птицы", "Рыба");
-        when(feline.getFood("Хищник")).thenReturn(expFood);
-        List<String> actFood = lion.getFood();
-        assertEquals(expFood, actFood);
+        when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+    }
+
+    @Test
+    public void isExceptionThrownWhenSexIncorrect() throws Exception{
+        Exception exception = assertThrows(Exception.class, () -> new Lion("Нечто", feline));
+        assertEquals("Используйте допустимые значения пола животного - самей или самка",
+                exception.getMessage());
     }
 
    }
