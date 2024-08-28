@@ -21,7 +21,7 @@ public class LionUnitTest {
     }
 
     @Test
-    public void testGetKittens() throws Exception {
+    public void testGetKittens(){
         when(feline.getKittens()).thenReturn(1);
         assertEquals(1, lion.getKittens());
     }
@@ -33,7 +33,7 @@ public class LionUnitTest {
     }
 
     @Test
-    public void isExceptionThrownWhenSexIncorrect() throws Exception{
+    public void isExceptionThrownWhenSexIncorrect(){
         Exception exception = assertThrows(Exception.class, () -> new Lion("Нечто", feline));
         assertEquals("Используйте допустимые значения пола животного - самей или самка",
                 exception.getMessage());
